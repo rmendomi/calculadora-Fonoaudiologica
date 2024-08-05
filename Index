@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadoras Fonoaudiológicas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      width: 100%;
+      font-size: 27px;
+      margin: 20px 0;
+    }
+    .button-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .button-group button {
+      background-color: #0056b3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 15px 20px;
+      font-size: 21px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+    .button-group button:hover {
+      background-color: #004494;
+    }
+    .calculator-section {
+      display: none;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      box-sizing: border-box;
+    }
+    .calculator-section h2 {
+      margin-top: 0;
+      color: #0056b3;
+      text-align: center;
+      font-size: 23px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+      font-size: 19px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+      font-size: 19px;
+    }
+    .form-group input[type="submit"] {
+      background-color: #0056b3;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      font-size: 21px;
+      padding: 15px;
+    }
+    .form-group input[type="submit"]:hover {
+      background-color: #004494;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+      font-size: 19px;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 600px) {
+      .button-group button {
+        font-size: 19px;
+        padding: 12px;
+      }
+      .calculator-section {
+        padding: 15px;
+      }
+      .form-group input, .form-group select {
+        padding: 10px;
+      }
+      .form-group input[type="submit"] {
+        padding: 12px;
+        font-size: 19px;
+      }
+      h1 {
+        font-size: 23px;
+      }
+      .calculator-section h2 {
+        font-size: 21px;
+      }
+      .form-group label {
+        font-size: 17px;
+      }
+      .result {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculadoras Fonoaudiológicas</h1>
+
+  <div class="button-group">
+    <button onclick="showSection('idtel_section')">IDTEL</button>
+    <button onclick="showSection('stsg_section')">STSG</button>
+    <button onclick="showSection('teprosif_r_section')">TEPROSIF-R</button>
+    <button onclick="showSection('tecal_section')">TECAL</button>
+  </div>
+
+  <!-- Sección para IDTEL -->
+  <div class="calculator-section" id="idtel_section">
+    <h2>IDTEL</h2>
+    <form onsubmit="calculateIDTEL(event)">
+      <div class="form-group">
+        <label for="idtel_total">Puntaje presencia/ausencia TEL:</label>
+        <input type="number" id="idtel_total" name="total" required>
+      </div>
+      <div class="form-group">
+        <label for="idtel_tipo_tel">Puntaje tipo TEL:</label>
+        <input type="number" id="idtel_tipo_tel" name="tipotel" disabled>
+      </div>
+      <div class="form-group">
+        <label for="idtel_edad">Edad:</label>
+        <select id="idtel_edad" name="edad" required>
+          <option value="6">6 años</option>
+          <option value="7">7 años</option>
+          <option value="8">8 años</option>
+          <option value="9">9 años</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Calcular IDTEL">
+      </div>
+    </form>
+    <div id="idtel_result" class="result"></div>
+  </div>
+
+  <!-- Sección para STSG -->
+  <div class="calculator-section" id="stsg_section">
+    <h2>STSG</h2>
+    <form onsubmit="calculateSTSG(event)">
+      <div class="form-group">
+        <label for="stsg_pr">Puntaje PR:</label>
+        <input type="number" id="stsg_pr" name="pr" required>
+      </div>
+      <div class="form-group">
+        <label for="stsg_pe">Puntaje PE:</label>
+        <input type="number" id="stsg_pe" name="pe" required>
+      </div>
+      <div class="form-group">
+        <label for="stsg_edad">Tramos de edad:</label>
+        <select id="stsg_edad" name="edad" required>
+          <option value="3">3 años</option>
+          <option value="4">4 años</option>
+          <option value="5">5 años</option>
+          <option value="6">6 años</option>
+          <option value="7">7 años</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Calcular STSG">
+      </div>
+    </form>
+    <div id="stsg_result" class="result"></div>
+  </div>
+
+  <!-- Sección para TEPROSIF-R -->
+  <div class="calculator-section" id="teprosif_r_section">
+    <h2>TEPROSIF-R</h2>
+    <form onsubmit="calculateTEPROSIF_R(event)">
+      <div class="form-group">
+        <label for="teprosif_r_totalPSF">Total PSF:</label>
+        <input type="number" id="teprosif_r_totalPSF" name="totalPSF" required>
+      </div>
+      <div class="form-group">
+        <label for="teprosif_r_edad">Tramos de edad:</label>
+        <select id="teprosif_r_edad" name="edad" required>
+          <option value="3">3 años</option>
+          <option value="4">4 años</option>
+          <option value="5">5 años</option>
+          <option value="6">6 años</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Calcular TEPROSIF-R">
+      </div>
+    </form>
+    <div id="teprosif_r_result" class="result"></div>
+  </div>
+
+  <!-- Sección para TECAL -->
+  <div class="calculator-section" id="tecal_section">
+    <h2>TECAL</h2>
+    <form onsubmit="calculateTECAL(event)">
+      <div class="form-group">
+        <label for="tecal_total">Puntaje Total:</label>
+        <input type="number" id="tecal_total" name="total" required>
+      </div>
+      <div class="form-group">
+        <label for="tecal_vocabulario">Puntaje Vocabulario:</label>
+        <input type="number" id="tecal_vocabulario" name="vocabulario" required>
+      </div>
+      <div class="form-group">
+        <label for="tecal_morfologia">Puntaje Morfología:</label>
+        <input type="number" id="tecal_morfologia" name="morfologia" required>
+      </div>
+      <div class="form-group">
+        <label for="tecal_sintaxis">Puntaje Sintaxis:</label>
+        <input type="number" id="tecal_sintaxis" name="sintaxis" required>
+      </div>
+      <div class="form-group">
+        <label for="tecal_edad">Tramos de edad:</label>
+        <select id="tecal_edad" name="edad" required>
+          <option value="3">3 años</option>
+          <option value="4">4 años</option>
+          <option value="5">5 años</option>
+          <option value="6">6 años</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Calcular TECAL">
+      </div>
+    </form>
+    <div id="tecal_result" class="result"></div>
+  </div>
+
+  <script>
+    function showSection(sectionId) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.calculator-section');
+      sections.forEach(section => section.style.display = 'none');
+
+      // Show the selected section
+      const sectionToShow = document.getElementById(sectionId);
+      sectionToShow.style.display = 'block';
+    }
+
+    function calculateIDTEL(event) {
+      event.preventDefault();
+      const data = {
+        total: document.getElementById('idtel_total').value,
+        tipotel: document.getElementById('idtel_tipo_tel').value,
+        edad: document.getElementById('idtel_edad').value
+      };
+      google.script.run.withSuccessHandler(function(result) {
+        const resultElement = document.getElementById('idtel_result');
+        resultElement.innerHTML = `Diagnóstico: ${result.diagnostico} <br> ${result.tipo ? `Tipo: ${result.tipo}` : ''}`;
+        if (result.diagnostico === 'Presencia de TEL') {
+          document.getElementById('idtel_tipo_tel').disabled = false;
+        } else {
+          document.getElementById('idtel_tipo_tel').disabled = true;
+        }
+      }).calculateIDTEL(data);
+    }
+
+    function calculateSTSG(event) {
+      event.preventDefault();
+      const data = {
+        pr: document.getElementById('stsg_pr').value,
+        pe: document.getElementById('stsg_pe').value,
+        edad: document.getElementById('stsg_edad').value
+      };
+      console.log("Datos enviados:", data);
+      google.script.run.withSuccessHandler(function(result) {
+        document.getElementById('stsg_result').innerText = result;
+      }).calculateSTSG(data);
+    }
+
+    function calculateTEPROSIF_R(event) {
+      event.preventDefault();
+      const data = {
+        totalPSF: document.getElementById('teprosif_r_totalPSF').value,
+        edad: document.getElementById('teprosif_r_edad').value
+      };
+      google.script.run.withSuccessHandler(function(result) {
+        document.getElementById('teprosif_r_result').innerText = result.replace(/,/g, '<br>');
+      }).calculateTEPROSIF_R(data);
+    }
+
+    function calculateTECAL(event) {
+      event.preventDefault();
+      const data = {
+        total: document.getElementById('tecal_total').value,
+        vocabulario: document.getElementById('tecal_vocabulario').value,
+        morfologia: document.getElementById('tecal_morfologia').value,
+        sintaxis: document.getElementById('tecal_sintaxis').value,
+        edad: document.getElementById('tecal_edad').value
+      };
+      google.script.run.withSuccessHandler(function(result) {
+        const resultElement = document.getElementById('tecal_result');
+        resultElement.innerHTML = result.replace(/,/g, '<br>');
+      }).calculateTECAL(data);
+    }
+  </script>
+</body>
+</html>

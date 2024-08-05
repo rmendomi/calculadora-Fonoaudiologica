@@ -9,8 +9,8 @@
   "dependencies": {
     "cordova": "^10.0.0",
     "cordova-ios": "^6.2.0",
-    "capacitor": "^3.0.0",
-    "capacitor-cli": "^3.0.0"
+    "@capacitor/core": "^3.6.0",
+    "@capacitor/cli": "^3.6.0"
   },
   "devDependencies": {},
   "author": "Tu Nombre",

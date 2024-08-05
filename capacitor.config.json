@@ -1,0 +1,6 @@
+{
+  "appId": "test.empresa.nueva",
+  "appName": "MiApp",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

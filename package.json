@@ -7,12 +7,13 @@
     "build": "cordova build"
   },
   "dependencies": {
-    "cordova": "^10.0.0",
-    "cordova-ios": "^6.2.0",
+    "@capacitor/cli": "^3.6.0",
     "@capacitor/core": "^3.6.0",
-    "@capacitor/cli": "^3.6.0"
+    "cordova": "^10.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "cordova-ios": "^6.3.0"
+  },
   "author": "Tu Nombre",
   "license": "ISC"
 }
